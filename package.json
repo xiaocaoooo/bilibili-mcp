@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "build:bundle": "esbuild src/index.ts --bundle --platform=node --minify --target=node22 --outfile=dist/bundle.js",
+    "build:sea": "node --experimental-sea-config sea-config.json",
+    "build:inject": "cp $(which node) ./node-sea && postject ./node-sea NODE_SEA_BLOB dist/sea-prep.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc463b6086147e454178b0aa6462688",
+    "docker:build": "docker build -t bilibili-mcp-sea .",
     "start": "node dist/index.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "format": "prettier --write .",
@@ -36,10 +40,12 @@
     "@types/md5": "^2.3.6",
     "@typescript-eslint/eslint-plugin": "^8.54.0",
     "@typescript-eslint/parser": "^8.54.0",
+    "esbuild": "^0.20.0",
     "eslint": "^9.39.2",
     "globals": "^17.3.0",
     "husky": "^9.1.7",
     "nodemon": "^3.1.11",
+    "postject": "^1.0.0-alpha.6",
     "prettier": "^3.8.1",
     "typescript-eslint": "^8.54.0"
   }

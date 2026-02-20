@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
+// Health check endpoint
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok' });
+});
+
 // Store transports to handle POST messages
 const transports = new Map<string, SSEServerTransport>();
 
