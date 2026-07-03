@@ -43,7 +43,7 @@ func (c *BiliClient) GetVideoInfo(req VideoInfoRequest) (*VideoInfoResponse, err
 func HandleGetVideoInfo(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	toolName := "HandleGetVideoInfo"
 	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
-	paramsBytes, err := json.Marshal(request.Params)
+	paramsBytes, err := json.Marshal(request.Params.Arguments)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
 	}
@@ -99,7 +99,7 @@ func (c *BiliClient) GetVideoDetail(req VideoDetailRequest) (*VideoDetailRespons
 func HandleGetVideoDetail(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	toolName := "HandleGetVideoDetail"
 	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
-	paramsBytes, err := json.Marshal(request.Params)
+	paramsBytes, err := json.Marshal(request.Params.Arguments)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
 	}
@@ -151,7 +151,7 @@ func (c *BiliClient) GetVideoStat(req VideoStatRequest) (*VideoStatResponse, err
 func HandleGetVideoStat(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	toolName := "HandleGetVideoStat"
 	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
-	paramsBytes, err := json.Marshal(request.Params)
+	paramsBytes, err := json.Marshal(request.Params.Arguments)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
 	}
@@ -200,7 +200,7 @@ func (c *BiliClient) GetVideoTags(req VideoTagsRequest) (*VideoTagsResponse, err
 func HandleGetVideoTags(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	toolName := "HandleGetVideoTags"
 	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
-	paramsBytes, err := json.Marshal(request.Params)
+	paramsBytes, err := json.Marshal(request.Params.Arguments)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
 	}
@@ -249,7 +249,7 @@ func (c *BiliClient) GetVideoDesc(req VideoDescRequest) (*VideoDescResponse, err
 func HandleGetVideoDesc(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	toolName := "HandleGetVideoDesc"
 	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
-	paramsBytes, err := json.Marshal(request.Params)
+	paramsBytes, err := json.Marshal(request.Params.Arguments)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
 	}
