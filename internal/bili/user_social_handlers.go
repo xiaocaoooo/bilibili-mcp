@@ -4,11 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 
 	"github.com/mark3labs/mcp-go/mcp"
 )
 
 func HandleGetUserProfile(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetUserProfile"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -17,6 +20,10 @@ func HandleGetUserProfile(ctx context.Context, client *BiliClient, req mcp.CallT
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.MID == "" {
+		return nil, fmt.Errorf("missing required parameter: mid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetUserProfile(params)
 	if err != nil {
 		return nil, err
@@ -26,6 +33,8 @@ func HandleGetUserProfile(ctx context.Context, client *BiliClient, req mcp.CallT
 }
 
 func HandleGetUserCard(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetUserCard"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -34,6 +43,10 @@ func HandleGetUserCard(ctx context.Context, client *BiliClient, req mcp.CallTool
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.MID == "" {
+		return nil, fmt.Errorf("missing required parameter: mid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetUserCard(params)
 	if err != nil {
 		return nil, err
@@ -43,6 +56,8 @@ func HandleGetUserCard(ctx context.Context, client *BiliClient, req mcp.CallTool
 }
 
 func HandleGetUserRelationStat(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetUserRelationStat"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -51,6 +66,10 @@ func HandleGetUserRelationStat(ctx context.Context, client *BiliClient, req mcp.
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.MID == "" {
+		return nil, fmt.Errorf("missing required parameter: mid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetUserRelationStat(params)
 	if err != nil {
 		return nil, err
@@ -60,6 +79,8 @@ func HandleGetUserRelationStat(ctx context.Context, client *BiliClient, req mcp.
 }
 
 func HandleGetUserPublicDynamics(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetUserPublicDynamics"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -68,6 +89,10 @@ func HandleGetUserPublicDynamics(ctx context.Context, client *BiliClient, req mc
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.MID == "" {
+		return nil, fmt.Errorf("missing required parameter: mid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetUserPublicDynamics(params)
 	if err != nil {
 		return nil, err
@@ -77,6 +102,8 @@ func HandleGetUserPublicDynamics(ctx context.Context, client *BiliClient, req mc
 }
 
 func HandleGetDynamicDetail(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetDynamicDetail"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -85,6 +112,10 @@ func HandleGetDynamicDetail(ctx context.Context, client *BiliClient, req mcp.Cal
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.DynamicID == "" {
+		return nil, fmt.Errorf("missing required parameter: dynamic_id")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetDynamicDetail(params)
 	if err != nil {
 		return nil, err
@@ -94,6 +125,8 @@ func HandleGetDynamicDetail(ctx context.Context, client *BiliClient, req mcp.Cal
 }
 
 func HandleGetColumnInfo(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetColumnInfo"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -102,6 +135,10 @@ func HandleGetColumnInfo(ctx context.Context, client *BiliClient, req mcp.CallTo
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.ColumnID == "" {
+		return nil, fmt.Errorf("missing required parameter: column_id")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetColumnInfo(params)
 	if err != nil {
 		return nil, err
@@ -111,6 +148,8 @@ func HandleGetColumnInfo(ctx context.Context, client *BiliClient, req mcp.CallTo
 }
 
 func HandleGetColumnList(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetColumnList"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -119,6 +158,10 @@ func HandleGetColumnList(ctx context.Context, client *BiliClient, req mcp.CallTo
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.MID == "" {
+		return nil, fmt.Errorf("missing required parameter: mid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetColumnList(params)
 	if err != nil {
 		return nil, err
@@ -128,6 +171,8 @@ func HandleGetColumnList(ctx context.Context, client *BiliClient, req mcp.CallTo
 }
 
 func HandleGetTopicDetails(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetTopicDetails"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -136,6 +181,10 @@ func HandleGetTopicDetails(ctx context.Context, client *BiliClient, req mcp.Call
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.TopicID == "" {
+		return nil, fmt.Errorf("missing required parameter: topic_id")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetTopicDetails(params)
 	if err != nil {
 		return nil, err
@@ -145,6 +194,8 @@ func HandleGetTopicDetails(ctx context.Context, client *BiliClient, req mcp.Call
 }
 
 func HandleGetVideoComments(ctx context.Context, client *BiliClient, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetVideoComments"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, req.Params)
 	paramsBytes, err := json.Marshal(req.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -153,6 +204,13 @@ func HandleGetVideoComments(ctx context.Context, client *BiliClient, req mcp.Cal
 	if err := json.Unmarshal(paramsBytes, &params); err != nil {
 		return nil, fmt.Errorf("invalid params: %w", err)
 	}
+	if params.OID == "" {
+		return nil, fmt.Errorf("missing required parameter: oid")
+	}
+	if params.Type == "" {
+		return nil, fmt.Errorf("missing required parameter: type")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, params)
 	res, err := client.GetVideoComments(params)
 	if err != nil {
 		return nil, err

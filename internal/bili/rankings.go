@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 
 	"github.com/mark3labs/mcp-go/mcp"
 )
@@ -143,6 +144,8 @@ func (c *BiliClient) GetPopularPrecious() (*PopularPreciousResponse, error) {
 // --- MCP Handlers ---
 
 func HandleGetRegionRanking(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetRegionRanking"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	paramsBytes, err := json.Marshal(request.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -151,7 +154,10 @@ func HandleGetRegionRanking(ctx context.Context, client *BiliClient, request mcp
 	if err := json.Unmarshal(paramsBytes, &req); err != nil {
 		return nil, fmt.Errorf("invalid parameters: %w", err)
 	}
-
+	if req.RegionID == "" {
+		return nil, fmt.Errorf("missing required parameter: region_id")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, req)
 	res, err := client.GetRegionRanking(req)
 	if err != nil {
 		return mcp.NewToolResultError(fmt.Sprintf("API error: %v", err)), nil
@@ -162,6 +168,8 @@ func HandleGetRegionRanking(ctx context.Context, client *BiliClient, request mcp
 }
 
 func HandleGetWeeklyMustWatch(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetWeeklyMustWatch"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	res, err := client.GetWeeklyMustWatchList()
 	if err != nil {
 		return mcp.NewToolResultError(fmt.Sprintf("API error: %v", err)), nil
@@ -172,6 +180,8 @@ func HandleGetWeeklyMustWatch(ctx context.Context, client *BiliClient, request m
 }
 
 func HandleGetWeeklyMustWatchDetail(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetWeeklyMustWatchDetail"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	paramsBytes, err := json.Marshal(request.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -180,7 +190,10 @@ func HandleGetWeeklyMustWatchDetail(ctx context.Context, client *BiliClient, req
 	if err := json.Unmarshal(paramsBytes, &req); err != nil {
 		return nil, fmt.Errorf("invalid parameters: %w", err)
 	}
-
+	if req.Num == "" {
+		return nil, fmt.Errorf("missing required parameter: num")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, req)
 	res, err := client.GetWeeklyMustWatchDetail(req)
 	if err != nil {
 		return mcp.NewToolResultError(fmt.Sprintf("API error: %v", err)), nil
@@ -191,6 +204,8 @@ func HandleGetWeeklyMustWatchDetail(ctx context.Context, client *BiliClient, req
 }
 
 func HandleGetPopularPrecious(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "GetPopularPrecious"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	res, err := client.GetPopularPrecious()
 	if err != nil {
 		return mcp.NewToolResultError(fmt.Sprintf("API error: %v", err)), nil

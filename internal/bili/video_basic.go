@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 
 	"github.com/mark3labs/mcp-go/mcp"
 )
@@ -40,6 +41,8 @@ func (c *BiliClient) GetVideoInfo(req VideoInfoRequest) (*VideoInfoResponse, err
 }
 
 func HandleGetVideoInfo(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "HandleGetVideoInfo"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	paramsBytes, err := json.Marshal(request.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -48,6 +51,10 @@ func HandleGetVideoInfo(ctx context.Context, client *BiliClient, request mcp.Cal
 	if err := json.Unmarshal(paramsBytes, &req); err != nil {
 		return nil, fmt.Errorf("invalid parameters: %w", err)
 	}
+	if req.Bvid == "" {
+		return nil, fmt.Errorf("missing required parameter: bvid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, req)
 	res, err := client.GetVideoInfo(req)
 	if err != nil {
 		return nil, err
@@ -90,6 +97,8 @@ func (c *BiliClient) GetVideoDetail(req VideoDetailRequest) (*VideoDetailRespons
 }
 
 func HandleGetVideoDetail(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "HandleGetVideoDetail"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	paramsBytes, err := json.Marshal(request.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -98,6 +107,10 @@ func HandleGetVideoDetail(ctx context.Context, client *BiliClient, request mcp.C
 	if err := json.Unmarshal(paramsBytes, &req); err != nil {
 		return nil, fmt.Errorf("invalid parameters: %w", err)
 	}
+	if req.Bvid == "" {
+		return nil, fmt.Errorf("missing required parameter: bvid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, req)
 	res, err := client.GetVideoDetail(req)
 	if err != nil {
 		return nil, err
@@ -136,6 +149,8 @@ func (c *BiliClient) GetVideoStat(req VideoStatRequest) (*VideoStatResponse, err
 }
 
 func HandleGetVideoStat(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "HandleGetVideoStat"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	paramsBytes, err := json.Marshal(request.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -144,6 +159,10 @@ func HandleGetVideoStat(ctx context.Context, client *BiliClient, request mcp.Cal
 	if err := json.Unmarshal(paramsBytes, &req); err != nil {
 		return nil, fmt.Errorf("invalid parameters: %w", err)
 	}
+	if req.Bvid == "" {
+		return nil, fmt.Errorf("missing required parameter: bvid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, req)
 	res, err := client.GetVideoStat(req)
 	if err != nil {
 		return nil, err
@@ -179,6 +198,8 @@ func (c *BiliClient) GetVideoTags(req VideoTagsRequest) (*VideoTagsResponse, err
 }
 
 func HandleGetVideoTags(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "HandleGetVideoTags"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	paramsBytes, err := json.Marshal(request.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -187,6 +208,10 @@ func HandleGetVideoTags(ctx context.Context, client *BiliClient, request mcp.Cal
 	if err := json.Unmarshal(paramsBytes, &req); err != nil {
 		return nil, fmt.Errorf("invalid parameters: %w", err)
 	}
+	if req.Bvid == "" {
+		return nil, fmt.Errorf("missing required parameter: bvid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, req)
 	res, err := client.GetVideoTags(req)
 	if err != nil {
 		return nil, err
@@ -222,6 +247,8 @@ func (c *BiliClient) GetVideoDesc(req VideoDescRequest) (*VideoDescResponse, err
 }
 
 func HandleGetVideoDesc(ctx context.Context, client *BiliClient, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	toolName := "HandleGetVideoDesc"
+	log.Printf("[MCP Handler] Tool: %s | Raw Params: %v", toolName, request.Params)
 	paramsBytes, err := json.Marshal(request.Params)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal params: %w", err)
@@ -230,6 +257,10 @@ func HandleGetVideoDesc(ctx context.Context, client *BiliClient, request mcp.Cal
 	if err := json.Unmarshal(paramsBytes, &req); err != nil {
 		return nil, fmt.Errorf("invalid parameters: %w", err)
 	}
+	if req.Bvid == "" {
+		return nil, fmt.Errorf("missing required parameter: bvid")
+	}
+	log.Printf("[MCP Handler] Tool: %s | Parsed Request: %+v", toolName, req)
 	res, err := client.GetVideoDesc(req)
 	if err != nil {
 		return nil, err
